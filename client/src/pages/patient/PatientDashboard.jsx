@@ -24,7 +24,7 @@ export const PatientDashboard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [statsResponse, appointmentsResponse, analysesResponse, trendsResponse] = await Promise.all([
+        const [statsResponse, appointmentsResponse, analysesResponse, trendsResponse] = await Promise.allSettled([
           userService.getStats().catch(() => ({stats: []})),
           appointmentService.getById(currentUserId).catch(() => ({ appointments: [] })),
           aiService.getAll().catch(() => ({ analyses: [] })),
